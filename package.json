@@ -1,0 +1,38 @@
+{
+  "name": "foodzilla",
+  "version": "1.0.0",
+  "description": "Its restaurant searching and ordering app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8shubham/FoodZilla.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/8shubham/FoodZilla/issues"
+  },
+  "homepage": "https://github.com/8shubham/FoodZilla#readme",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "consolidate": "^0.14.5",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.16.1",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "nodemon": "^1.12.1",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "swig": "^1.4.2"
+  }
+}
