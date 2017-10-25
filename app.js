@@ -12,7 +12,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://<user>:<pass>@ds159344.mlab.com:59344/project', {
+mongoose.connect('mongodb://rachit:rachit@ds159344.mlab.com:59344/project', {
 	  useMongoClient: true,
 });
 var db = mongoose.connection;

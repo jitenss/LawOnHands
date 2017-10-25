@@ -1,0 +1,4 @@
+applications:
+- name: lawonhands
+  random-route: true
+  memory: 512M

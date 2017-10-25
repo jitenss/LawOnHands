@@ -1,21 +1,15 @@
 {
-  "name": "foodzilla",
+  "name": "lawonhands",
   "version": "1.0.0",
-  "description": "Its restaurant searching and ordering app",
-  "main": "index.js",
+  "description": "App for Clients to meet with Lawyers",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/8shubham/FoodZilla.git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/8shubham/FoodZilla/issues"
-  },
-  "homepage": "https://github.com/8shubham/FoodZilla#readme",
+  "homepage": "https://github.com/kinochi/LawOnHand/#readme",
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
@@ -34,5 +28,9 @@
     "passport-http": "*",
     "passport-local": "*",
     "swig": "^1.4.2"
+  },
+  "engines": {
+    "node": "8.6.0",
+    "npm": "5.3.0"
   }
 }

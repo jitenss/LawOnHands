@@ -1,0 +1,20 @@
+<div class="w3_agile_search">
+				<div class="container-fluid">
+  				
+				<form action="/users/search" method="post" id = "searchform">
+					<input type="text" name="lname" placeholder="Search Lawyer..." required="" />
+					<input type="submit" value=" " onclick="convert()">
+				</form>
+				</div>
+			</div>
+
+<script type="text/javascript">
+	function convert() {
+	    var str ;
+	    str = document.getElementById("lname");
+	    str.value = (str.value.toLowerCase());
+	    //get the form id and submit it
+	    var form = document.getElementById("searchform");
+	    form.submit();
+	}
+</script>

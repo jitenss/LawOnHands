@@ -12,6 +12,9 @@ var UserSchema = mongoose.Schema({
 	name: {
 		type: String
 	},
+	user_level: {
+		type: String
+	},
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);
@@ -28,6 +31,11 @@ module.exports.createUser = function(newUser, callback){
 module.exports.getUserByEmail = function(email, callback){
 	var query = {email: email};
 	User.findOne(query, callback);
+}
+
+module.exports.getUserByUsername = function(name, callback){
+	var query = {name: name};
+	User.find(query, callback);
 }
 
 module.exports.getUserById = function(id, callback){

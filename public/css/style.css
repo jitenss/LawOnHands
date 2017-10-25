@@ -408,8 +408,8 @@ nav.navbar.navbar-default {
     
     font-size: 16px;
     font-weight: 400;
-    padding: 6px 12px;
-     width: 74%;
+    padding: 3px 6px;
+     width: 50%;
     outline: none;
     background: #fff;
     color: #000;
@@ -423,8 +423,8 @@ nav.navbar.navbar-default {
     font-size: 15px;
     text-transform: capitalize;
     font-weight:700;
-    padding: 8px 20px;
-    margin-left: -3px;
+    padding: 8px 10px;
+    margin-left: 3px;
     outline: none;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
