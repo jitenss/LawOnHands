@@ -64,7 +64,7 @@ router.get('/dashboardl', ensureAuthenticated, function(req, res){
 // Login
 router.get('/login', function(req, res){
 	console.log("sdfasf");
-	res.render('index');
+	res.redirect('index');
 });
 
 //Register
@@ -121,7 +121,6 @@ router.post('/register', function(req, res){
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
-
 		res.redirect('/');
 	}
 });
@@ -213,10 +212,16 @@ router.get('/searchlawyer',ensureAuthenticated, function(req, res){
 	res.render('searchlawyer', {layout: 'layoutb.handlebars'});
 });
 
-router.get('/divorcecase',ensureAuthenticated, function(req, res){
+router.get('/divorcecase',ensureAuthenticated,function(req, res){
 	res.render('divorcecase', {layout: 'layoutb.handlebars'});
 });
 
+router.get('/criminalcase',ensureAuthenticated,function(req, res){
+	res.render('criminal', {layout: 'layoutb.handlebars'});
+});
 
+router.get('/corporatecase',ensureAuthenticated,function(req, res){
+	res.render('corporatecase', {layout: 'layoutb.handlebars'});
+});
 
 module.exports = router;

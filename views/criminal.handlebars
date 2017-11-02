@@ -1,0 +1,107 @@
+<div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Criminal Case Details</h2>
+            </div>
+          </header>
+		 <div class="content-wrapper">
+         <div class="container">
+        <div class="row pad-botm">
+            <div class="col-md-12">
+               
+                
+                            </div>
+
+        </div>
+             <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+               <div class="panel panel-info">
+                        
+
+                        <div class="panel-body">
+                            <form role="form" action="/cases/criminal_submit" id = "searchform" method="post">
+                                        <div class="form-group">
+                                            <label><h5><h5>Enter Case Name</h5></h5></label>
+                                            <input class="form-control" name="casename" type="text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label><h5><h5>Enter Offence Date</h5></h5></label>
+                                            <input type="date" class="form-control" id="exampleInputDOB1" name="casedate">
+                                        </div>
+
+                                            
+                                <div class="form-group">
+                                            <label><h5>Offence</h5></label>
+                                            <textarea class="form-control" rows="3" name="caseoffence"></textarea>
+                                </div>
+                                  <hr/>
+
+                                  <div class="form-group">
+                                            <label><h5><h5>Agency</h5></h5></label>
+                                            <input type="date" class="form-control" id="exampleInputDOB1"name="caseagency">
+                                        </div>
+                          
+                                   <div class="form-group">
+
+
+                                            <div class="panel-body">
+                                <div class="form-group">
+                                            <label><h5>Location</h5></label>
+                                            <select class="form-control" name="location">
+                                                <option>Delhi</option>
+                                                <option>Mumbai</option>
+                                                <option>Pune</option>
+                                                <option>Chennai</option>
+                                                <option>Ahmedabad</option>
+                                                <option>Jaipur</option>
+                                                <option>Kolkata</option>
+                                            </select>
+                                </div>
+                            
+                            
+                                <div class="form-group">
+                                    <br>
+                                            <label><h5>Budget Details</h5></label>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="budget" id="optionsRadios1" value="<30k" checked="">Less than 30k
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="budget" id="optionsRadios2" value="30k-60k">30k-60k
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="budget" id="optionsRadios3" value="60k-1L">60k-1L
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="budget" id="optionsRadios3" value=">1L">More than 1L
+                                                </label>
+                                            </div>
+                                </div>
+                                <div class="form-group">
+                                            <label><h5>Comments</h5></label> 
+                                            <textarea class="form-control" rows="3" name="comments"></textarea>
+                                </div>
+
+                            </div>
+                                 
+                                        <button type="submit" class="btn btn-info">Submit </button>
+
+                                    </form>
+                                    <br>
+                                    <br>
+                            </div>
+                        </div>
+                            </div>
+
+             <!--/.ROW-->
+             </div>
+               
+             		     
+</div>

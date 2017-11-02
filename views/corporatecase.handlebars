@@ -2,10 +2,16 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">Divorce Case Details</h2>
+              <h3 class="no-margin-bottom">Corporate Case Details</h3>
             </div>
+            <br>
           </header>
-		 <div class="content-wrapper">
+          
+
+
+
+  <!-- MENU SECTION END-->
+    <div class="content-wrapper">
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
@@ -17,94 +23,94 @@
              <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                <div class="panel panel-info">
-                        
+                        <div class="panel-heading">
+                           <strong>BASIC FORM</strong>
+                        </div>
+                        <br>
 
                         <div class="panel-body">
-                            <form role="form" action="/cases/submit" id = "searchform" method="post">
+                            <form role="form">
                                         <div class="form-group">
-                                            <label><h5><h5>Enter Case Name</h5></h5></label>
-                                            <input class="form-control" name="casename" type="text" />
+                                            <label><h5><h5>Enter Company Name</h5></h5></label>
+                                            <input name="casename" class="form-control" type="text" />
+                                            
                                         </div>
-                                        <div class="form-group">
-                                            <label><h5><h5>Enter Spouse Name</h5></h5></label>
-                                            <input class="form-control" name="spousename" type="text" />
-                                        </div>
-
+                                        
                                  <div class="form-group">
-                                            <label><h5><h5>Select Gender of Spouse</h5></label><br>
+                                            <label><h5><h5>Type of Case</h5></label><br>
                                             <label>
                                             &nbsp; &nbsp;
-                                            <input type="radio" name="gender" value="Male"> Male &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <input type="radio" name="type"> Settlement &nbsp; &nbsp; &nbsp; &nbsp;</label>
                                             <label>
 
-                                            <input type="radio" name="gender" value="Female"> Female </label><br><br>
+                                            <input type="radio" name="type"> Agreement-Violation &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <label>
 
-                                               <div class="form-group"> 
+                                            <input type="radio" name="type"> Perjury &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <label>
+
+                                            <input type="radio" name="type"> Fraud &nbsp; &nbsp; &nbsp; &nbsp;</label><br><br>
+
+                                            <div class="form-group"> 
                                                     <div class="form-group">
-                                                        <label><h5>Date of Marriage</h5></label>
-                                                        <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Date" name="casedate">
+                                                        <label><h5>Year of Conflict</h5></label>
+                                                        <input name="year_of_conflict" type="date" class="form-control" id="exampleInputDOB1" placeholder="Date">
                                                     </div>
-                                            </div>              
+                                            </div>
+
+                                                
                                  </div>
                                             
                                 <div class="form-group">
-                                            <label><h5>Reason for Divorce</h5></label>
-                                            <textarea class="form-control" rows="3" name="casereason"></textarea>
+                                            <label><h5>Detail Reason for Case</h5></label>
+                                            <textarea name="reason" class="form-control" rows="3"></textarea>
                                 </div>
                                   <hr/>
                           
                                    <div class="form-group">
-                                            <label><h5>Assets of Spouse before marriage</h5></label>
+                                            <label><h5>Assets for reimbursement</h5></label>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="assets" value="Residential Property" />Residential Property
+                                                    <input name="assets" type="checkbox" value="" />Property
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="assets" value="Investment Property" />Investment Property
+                                                    <input name="assets" type="checkbox" value="" />Shares
                                                 </label>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="assets" value="Business/Gold Property"/>Business/Gold
+                                                    <input name="assets" type="checkbox" value="" />Equity
                                                 </label>
                                             </div>
                                              <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="assets" value="Bank Property"/>Bank Accounts
+                                                    <input name="assets" type="checkbox" value="" />Loan
                                                 </label>
                                             </div>
                                         
                                         <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="assets" value="Others"/>Others
+                                                    <input type="checkbox" value="" />Others
                                                 </label>
                                             </div>  <br>
                                         <div class="form-group">
-                                            <label><h5>Mutual Decision</h5></label><br>
+                                            <label><h5>Bilateral Conflict</h5></label><br>
                                             <label>
                                             &nbsp; &nbsp;
-                                            <input type="radio" name="decision" value="Yes">Yes &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <input type="radio" name="Yes-No">Yes &nbsp; &nbsp; &nbsp; &nbsp;</label>
                                             <label>
 
-                                            <input type="radio" name="decision" value="Yes"> No </label><br>
+                                            <input type="radio" name="Yes-No"> No </label><br>
                                             </div>
 
-                                        <div class="form-group">
-                                            <label><h5>Does Spouse require child support</h5></label><br>
-                                            <label>
-                                            &nbsp; &nbsp;
-                                            <input type="radio" name="childsupport" value="Yes">Yes &nbsp; &nbsp; &nbsp; &nbsp;</label>
-                                            <label>
-
-                                            <input type="radio" name="childsupport" value="No"> No </label><br><br>
-                                            </div>
+                                        
                                             </div>
                                             <div class="panel-body">
                                 <div class="form-group">
                                             <label><h5>Location</h5></label>
-                                            <select class="form-control" name="location">
+                                            <select class="form-control">
                                                 <option>Delhi</option>
                                                 <option>Mumbai</option>
                                                 <option>Pune</option>
@@ -112,6 +118,7 @@
                                                 <option>Ahmedabad</option>
                                                 <option>Jaipur</option>
                                                 <option>Kolkata</option>
+                                                
                                             </select>
                                 </div>
                             
@@ -121,28 +128,28 @@
                                             <label><h5>Budget Details</h5></label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="budget" id="optionsRadios1" value="<30k" checked="">Less than 30k
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Less than 10L
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="budget" id="optionsRadios2" value="30k-60k">30k-60k
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">10L-30L
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="budget" id="optionsRadios3" value="60k-1L">60k-1L
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">30L-60L
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="budget" id="optionsRadios3" value=">1L">More than 1L
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">More than 60L
                                                 </label>
                                             </div>
                                 </div>
                                 <div class="form-group">
                                             <label><h5>Comments</h5></label> 
-                                            <textarea class="form-control" rows="3" name="comments"></textarea>
+                                            <textarea class="form-control" rows="3"></textarea>
                                 </div>
 
                             </div>
@@ -158,6 +165,4 @@
 
              <!--/.ROW-->
              </div>
-               
-             		     
-</div>
+             </div>

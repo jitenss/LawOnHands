@@ -32,6 +32,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!-- banner -->
 <div class="header">
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content">
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	
+	<div class="signin-form profile">
+	<h3 class="agileinfo_sign">Sign In</h3>	
+			<div class="login-form">
+				<form action="/users/login" method="post">
+					<input type="email" name="email" placeholder="E-mail" required="">
+					<input type="password" name="password" placeholder="Password" required="">
+					<br>
+					<div>
+					<select class="form-control input-lg" name="user_level">
+									<option value="Lawyer">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Lawyer</option>
+									<option value="Client">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;Client</option>
+								</select>	
+					</div>	
+					<div class="tp">
+						<input type="submit" value="Sign In">
+					</div>
+				</form>
+			</div>
+			<div class="login-social-grids">
+				<ul>
+					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</div>
+			<p><a href="#" data-toggle="modal" data-target="#myModal3" > Don't have an account?</a></p>
+		</div>
+</div>
+</div>
+</div>
+</div>
 		
 		<div class="w3layouts_header_right">
 			<ul>
@@ -45,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               	<li role="presentation"><a href="/users/dashboard">Dashboard</a></li>
               	<li role="presentation"><a href="/users/logout">Logout</a></li>
             	{{else}}
-	<li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-user" aria-hidden="true"></i> Log in</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#myModal2"><i class="fa fa-user" aria-hidden="true"></i> Log in</a></li>
 					<li><a href="#" data-toggle="modal" data-target="#myModal3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign up</a></li>
             	{{/if}}
 				</ul>
@@ -70,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav class="link-effect-2" id="link-effect-2">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/"><span data-hover="Home">Home</span></a></li>
-						<li><a href=/users/about><span data-hover="About Us">About Us</span></a></li>
+						<li><a href="/users/about"><span data-hover="About Us">About Us</span></a></li>
 						<li><a href="/users/forum"><span data-hover="forum">Forum</span></a></li>
 						<li><a href="/users/mail"><span data-hover="Mail Us">Mail Us</span></a></li>
 					</ul>
@@ -163,44 +201,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //footer -->
 
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
-<div class="modal-dialog">
-<!-- Modal content-->
-<div class="modal-content">
-<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal">&times;</button>
-	
-	<div class="signin-form profile">
-	<h3 class="agileinfo_sign">Sign In</h3>	
-			<div class="login-form">
-				<form action="/users/login" method="post">
-					<input type="email" name="email" placeholder="E-mail" required="">
-					<input type="password" name="password" placeholder="Password" required="">
-					<br>
-					<div>
-					<select class="form-control input-lg" name="user_level">
-									<option value="Lawyer">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Lawyer</option>
-									<option value="Client">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;Client</option>
-								</select>	
-					</div>	
-					<div class="tp">
-						<input type="submit" value="Sign In">
-					</div>
-				</form>
-			</div>
-			<div class="login-social-grids">
-				<ul>
-					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="#"><i class="fa fa-rss"></i></a></li>
-				</ul>
-			</div>
-			<p><a href="#" data-toggle="modal" data-target="#myModal3" > Don't have an account?</a></p>
-		</div>
-</div>
-</div>
-</div>
-</div>
 <!-- //Modal1 -->	
 <!-- Modal2 -->
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
