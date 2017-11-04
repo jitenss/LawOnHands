@@ -30,6 +30,17 @@ var app = express();
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'html');
 
+/*var hbsHelpers = exphbs.create({
+    helpers: require("./helpers/handlebars.js").helpers,
+    defaultLayout: 'layout',
+    extname: '.hbs'
+});
+
+app.engine('.hbs', hbsHelpers.engine);
+app.set('view engine', '.hbs');*/
+
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout:'layout'}));
 app.set('view engine', 'handlebars');

@@ -33,6 +33,10 @@ var CaseSchema = mongoose.Schema({
 	case_lawyer: {
 		type: String
 	},
+	case_request: {
+		type: Boolean,
+		default: false			// False means pending case
+	}
 },	{discriminatorKey : 'case_type' }
 );
 
@@ -110,7 +114,7 @@ module.exports.getCaseByEmailAndName = function(name,email,callback){
 	jitencase.find(query,callback);
 }
 
-module.exports.updateCaseByLawyer = function(casename,client_email,lawyer_email,callback)
+module.exports.updateCaseByNameAndLawyerID = function(casename,client_email,lawyer_email,callback)
 {
 	var query = {
 		case_name: casename,
@@ -118,4 +122,20 @@ module.exports.updateCaseByLawyer = function(casename,client_email,lawyer_email,
 	};
 
 	jitencase.update(query,{case_lawyer: lawyer_email},callback);
+}
+
+module.exports.getApprovedCasesByLawyer = function(lawyer_email,callback){
+	var query = {
+		case_request: true,
+		case_lawyer : lawyer_email
+	};
+	jitencase.find(query,callback);
+}
+
+module.exports.getPendingCasesByLawyer = function(lawyer_email,callback){
+	var query = {
+		case_request: {$eq: false},
+		case_lawyer : lawyer_email
+	};
+	jitencase.find(query,callback);
 }

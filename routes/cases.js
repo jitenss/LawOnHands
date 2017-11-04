@@ -186,14 +186,34 @@ router.post('/submitlawyer',ensureAuthenticated,function(req,res){
 	var client_email = req.user.email;
 	var casename = req.body.casename;
 
-	Case.updateCaseByLawyer(casename,client_email,lawyer_email,function(err)
+	Case.updateCaseByNameAndLawyerID(casename,client_email,lawyer_email,function(err)
 	{
 		if(err) throw err;
 
-		res.flash('msg','Your case has been submitted to the lawyer');
-		res.redirect('/users/dashboardc');
+		req.flash('msg','Your case has been submitted to the lawyer');
+		res.render('dashboardc',{layout:'layoutb.handlebars'});
 	});
 });
 
+
+router.get('/approvedcase',ensureAuthenticated,function(req,res){
+	var lawyer_email = req.user.email;
+	
+	Case.getApprovedCasesByLawyer(lawyer_email,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('approved',{layout: 'layoutb.handlebars',result: result});
+	});
+});
+
+router.get('/pendingcase',ensureAuthenticated,function(req,res){
+	var lawyer_email = req.user.email;
+	
+	Case.getPendingCasesByLawyer(lawyer_email,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('pending',{layout: 'layoutb.handlebars',result: result});
+	});
+});
 
 module.exports = router;
