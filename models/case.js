@@ -30,6 +30,9 @@ var CaseSchema = mongoose.Schema({
 	case_comments: {
 		type: String
 	},
+	case_lawyer: {
+		type: String
+	},
 },	{discriminatorKey : 'case_type' }
 );
 
@@ -59,9 +62,40 @@ var CriminalSchema = new mongoose.Schema(
 	{ discriminatorKey : 'case_type' }
 );
 
-module.exports = {
-		divorseCase:	jitencase.discriminator('divorse', DivorseSchema),
-		criminalCase:	jitencase.discriminator('criminal', CriminalSchema)
+//Corporate Schema
+var CorporateSchema = new mongoose.Schema(
+	{
+	company_name: String,
+	type: String,
+	year_of_conflict: String,
+	reason: String,
+	assets: String,
+	bilateral_conflict: String,
+	},
+	{ discriminatorKey : 'case_type' }
+)
+
+//DUI Schema
+var DuiSchema = new mongoose.Schema(
+	{
+	driver_name: String,
+	gender: String,
+	incident_date: String,
+	time: String,
+	address: String,
+	plate_no: String,
+	reporting_officer: String,
+	damage: String,
+	witness: String,
+	},
+	{ discriminatorKey : 'case_type' }
+)
+
+var Case = module.exports = {
+		divorseCase:	jitencase.discriminator('Divorse', DivorseSchema),
+		criminalCase:	jitencase.discriminator('Criminal', CriminalSchema),
+		corporateCase:	jitencase.discriminator('Corporate', CorporateSchema),
+		duiCase:		jitencase.discriminator('DUI', DuiSchema),
 }
 //var criminalCase = module.exports = mongoose.model('cCase', CriminalSchema);
 
@@ -69,3 +103,19 @@ module.exports.createCase = function(newCase, callback){
 	newCase.save(callback);
 	console.log(newCase);
 };
+
+module.exports.getCaseByEmailAndName = function(name,email,callback){
+	var query = ({user_email: email,
+				case_name: name});
+	jitencase.find(query,callback);
+}
+
+module.exports.updateCaseByLawyer = function(casename,client_email,lawyer_email,callback)
+{
+	var query = {
+		case_name: casename,
+		user_email: client_email
+	};
+
+	jitencase.update(query,{case_lawyer: lawyer_email},callback);
+}

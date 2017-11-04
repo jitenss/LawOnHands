@@ -196,7 +196,7 @@ router.get('/submit', ensureAuthenticated, function(req, res){
 	res.redirect('/users/dashboardc');
 });
 
-router.post('/search', ensureAuthenticated, function(req, res){
+router.post('/searchlawyer', ensureAuthenticated, function(req, res){
 	var name = req.body.lname;
 	console.log(name);
 	User.getUserByUsername(name, function(err, result){
@@ -222,6 +222,10 @@ router.get('/criminalcase',ensureAuthenticated,function(req, res){
 
 router.get('/corporatecase',ensureAuthenticated,function(req, res){
 	res.render('corporatecase', {layout: 'layoutb.handlebars'});
+});
+
+router.get('/duicase',ensureAuthenticated,function(req, res){
+	res.render('dui', {layout: 'layoutb.handlebars'});
 });
 
 module.exports = router;

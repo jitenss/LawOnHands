@@ -2,7 +2,7 @@
           <!-- Page Header-->
           <header class="page-header">
             <div class="container-fluid">
-              <h3 class="no-margin-bottom">Corporate Case Details</h3>
+              <h3 class="no-margin-bottom">Drunk Under Influence Case Details</h3>
             </div>
             <br>
           </header>
@@ -29,90 +29,87 @@
                         <br>
 
                         <div class="panel-body">
-                            <form role="form" action="/cases/corporate_submit" id = "searchform" method="post">
+                            <form role="form" action="/cases/dui_submit" id = "searchform" method="post">
                                         <div class="form-group">
                                             <label><h5><h5>Enter Case Name</h5></h5></label>
                                             <input name="casename" class="form-control" type="text" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><h5>Driver's Name</h5></label>
+                                            <input class="form-control" name="name"type="text" />
                                             
                                         </div>
                                         <div class="form-group">
-                                            <label><h5><h5>Enter Company Name</h5></h5></label>
-                                            <input name="companyname" class="form-control" type="text" />
+                                            <label><h5>Gender</h5></label><br>
+                                            <label>
+                                            &nbsp; &nbsp;
+                                            <input type="radio" name="gender" value="Male">Male &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <label>
+
+                                            <input type="radio" name="gender" value="Female">Female </label><br>
+                                            </div>
+                                            
+                                                    <div class="form-group">
+                                                        <label><h5>Date of Incident</h5></label>
+                                                        <input type="date" class="form-control" id="exampleInputDOB1" name="date">
+                                                    </div>
+                                            
+                                            <div class="form-group">
+
+<br>                                                <label><h5>Specify Time </h5></label>
+                                                <input type="time" name="time">
+                                              </div>
+
+                                            <div class="form-group">
+                                            <label><h5><h5>Exact Address</h5></h5></label>
+                                            <input class="form-control" name="address"type="text" />
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label><h5><h5>Vehicle Plate Number</h5></h5></label>
+                                            <input class="form-control" name="plate_no" type="text" />
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label><h5><h5>Reporting Officer Name</h5></h5></label>
+                                            <input class="form-control" type="text" name="reporting_officer"/>
                                             
                                         </div>
                                         
                                  <div class="form-group">
-                                            <label><h5><h5>Type of Case</h5></label><br>
+                                            <label><h5><h5>Specify Damage</h5></label><br>
                                             <label>
                                             &nbsp; &nbsp;
-                                            <input type="radio" name="type" value="Settlement"> Settlement &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <input type="radio" name="damage" value="Hit and Run">Hit and Run  &nbsp; &nbsp; &nbsp; &nbsp;</label>
                                             <label>
 
-                                            <input type="radio" name="type" value="Agreement-Violation"> Agreement-Violation &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <input type="radio" name="damage" value="Property Loss" > Property Loss &nbsp; &nbsp; &nbsp; &nbsp;</label>
                                             <label>
 
-                                            <input type="radio" name="type" value="Perjury"> Perjury &nbsp; &nbsp; &nbsp; &nbsp;</label>
-                                            <label>
-
-                                            <input type="radio" name="type" value="Fraud"> Fraud &nbsp; &nbsp; &nbsp; &nbsp;</label><br><br>
-
-                                            <div class="form-group"> 
-                                                    <div class="form-group">
-                                                        <label><h5>Year of Conflict</h5></label>
-                                                        <input name="year_of_conflict" type="date" class="form-control" id="exampleInputDOB1">
-                                                    </div>
-                                            </div>
-
-                                                
+                                            <input type="radio" name="damage" value="Death or Manslaughter"> Death or Manslaughter&nbsp; &nbsp; &nbsp; &nbsp;</label>
                                  </div>
                                             
                                 <div class="form-group">
-                                            <label><h5>Detail Reason for Case</h5></label>
-                                            <textarea name="reason" class="form-control" rows="3"></textarea>
+                                            <label><h5>Vehicle Description</h5></label>
+                                            <textarea class="form-control" name="v_description"rows="3"></textarea>
                                 </div>
                                   <hr/>
                           
-                                   <div class="form-group">
-                                            <label><h5>Assets for reimbursement</h5></label>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="assets" type="checkbox" value="Property" />Property
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="assets" type="checkbox" value="Shares" />Shares
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="assets" type="checkbox" value="Equity" />Equity
-                                                </label>
-                                            </div>
-                                             <div class="checkbox">
-                                                <label>
-                                                    <input name="assets" type="checkbox" value="Loan" />Loan
-                                                </label>
-                                            </div>
-                                        
-                                        <div class="checkbox">
-                                                <label>
-                                                    <input name="assets" type="checkbox" value="Others" />Others
-                                                </label>
-                                            </div>  <br>
+                                   
                                         <div class="form-group">
-                                            <label><h5>Bilateral Conflict</h5></label><br>
+                                            <label><h5>Any Witness</h5></label><br>
                                             <label>
                                             &nbsp; &nbsp;
-                                            <input type="radio" name="bilateral_conflict" value="Yes">Yes &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                            <input type="radio" name="witness" value="Yes">Yes &nbsp; &nbsp; &nbsp; &nbsp;</label>
                                             <label>
 
-                                            <input type="radio" name="bilateral_conflict" value="No"> No </label><br>
+                                            <input type="radio" name="witness" value="No"> No </label><br>
                                             </div>
 
                                         
                                             </div>
-                                            <div class="panel-body">
+                                             <div class="panel-body">
                                 <div class="form-group">
                                             <label><h5>Location</h5></label>
                                             <select class="form-control" name="location">

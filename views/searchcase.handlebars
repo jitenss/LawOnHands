@@ -1,8 +1,8 @@
 <div class="w3_agile_search">
 				<div class="container-fluid">
   				
-				<form action="/users/searchlawyer" method="post" id = "searchform">
-					<input type="text" name="lname" placeholder="Search Lawyer..." required="" />
+				<form action="/cases/searchcase" method="post" id = "searchform">
+					<input type="text" name="cname" placeholder="Search Case..." required="" />
 					<input type="submit" value=" " onclick="convert()">
 				</form>
 				</div>
@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	function convert() {
 	    var str ;
-	    str = document.getElementById("lname");
+	    str = document.getElementById("cname");
 	    str.value = (str.value.toLowerCase());
 	    //get the form id and submit it
 	    var form = document.getElementById("searchform");
