@@ -1,20 +1,22 @@
-<div class="w3_agile_search">
-				<div class="container-fluid">
-  				
-				<form action="/users/search" method="post" id = "searchform">
-					<input type="text" name="lname" placeholder="Search Lawyer..." required="" />
-					<input type="submit" value=" " onclick="convert()">
-				</form>
-				</div>
-			</div>
+       <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Search Lawyer</h2>
+            </div>
+          </header>
 
-<script type="text/javascript">
-	function convert() {
-	    var str ;
-	    str = document.getElementById("lname");
-	    str.value = (str.value.toLowerCase());
-	    //get the form id and submit it
-	    var form = document.getElementById("searchform");
-	    form.submit();
-	}
-</script>
+<form action="/users/search" method="post" id = "searchform">
+			<div class="container-fluicnamed">
+			<div class="clearBoth">
+				<input type="radio" name="search_type" value="name" checked>		Name &nbsp;
+				<input type="radio" name="search_type" value="specialization"> Specialization &nbsp;
+				<input type="radio" name="search_type" value="location">	Locations &nbsp;
+			</div>
+			<br/>
+			<input type="text" name="lname" placeholder="Search Lawyer..." required="" />
+			<br/><br/>
+			<input type="submit" name="Submit">
+			</div>
+		</form>
+

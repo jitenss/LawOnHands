@@ -1,0 +1,25 @@
+<div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Pending Cases</h2>
+            </div>
+          </header>
+
+          <div class="row">
+          	{{#each result}}
+          		<div class="col-md-3 col-sm-3 col-xs-6">
+                      <div class="alert alert-info back-widget-set text-center">
+                            <img src="/images/case.jpg" alt="..." class="img-thumbnail">
+                            <h5>Case: {{this.case_name}} </h5>
+                            <h5>Client Email:<h5>
+                             <h5>{{this.user_email}} </h5>
+                            <a href="#">
+                            <button type="button" class="btn btn-info">Case Details</button>
+                            </a>
+                        </div>
+                    </div>
+    		    {{else}}
+    			     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Pending Cases</strong>
+    		    {{/each}}
+          </div>

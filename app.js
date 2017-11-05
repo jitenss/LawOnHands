@@ -7,12 +7,12 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local-roles').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://rachit:rachit@ds159344.mlab.com:59344/project', {
+mongoose.connect('mongodb://localhost:27017/mydb', {
 	  useMongoClient: true,
 });
 var db = mongoose.connection;
@@ -31,7 +31,10 @@ var app = express();
 // app.set('view engine', 'html');
 
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.engine('handlebars', exphbs({
+	defaultLayout:'layout',
+	helpers: require('./public/handlebars/handlebars')
+}));
 app.set('view engine', 'handlebars');
 
 // BodyParser Middleware

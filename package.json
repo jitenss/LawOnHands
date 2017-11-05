@@ -23,11 +23,10 @@
     "express-validator": "*",
     "mongodb": "*",
     "mongoose": "*",
-    "mongoose-schema-extend": "^0.2.2",
     "nodemon": "^1.12.1",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*",
+    "passport-local-roles": "*",
     "swig": "^1.4.2",
     "util": "^0.10.3"
   },

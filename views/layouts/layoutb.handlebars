@@ -82,8 +82,15 @@
           <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
           <ul class="list-unstyled">
             <li class="active"> <a href="/"><i class="icon-home"></i>Home</a></li>
-            
-            <li> <a href="/users/dashboardc"> <i class="fa fa-plus-square"></i>Add New Case </a></li>
+
+	j{{#ifeq a ""}} 
+              <li> <a href="/users/dashboardc"> <i class="fa fa-plus-square"></i>Add New Case </a></li>
+              <li> <a href="/cases/searchcase"> <i class="fa fa-plus-square"></i>Search Cases</a></li>
+          
+              <li> <a href="/cases/approvedcase"> <i class="fa fa-plus-square"></i>Approved Cases</a></li>
+              <li> <a href="/cases/pendingcase"> <i class="fa fa-plus-square"></i>Pending Cases</a></li>
+          
+
             <li> <a href="/users/searchlawyer"> <i class="fa fa-filter"></i> Search Lawyer </a></li>
             <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-comments"></i>Forums </a>
               <ul id="dashvariants" class="collapse list-unstyled">

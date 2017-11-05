@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local-roles').Strategy;
 
 var User = require('../models/user');
+var Case = require('../models/case');
 var value;
 
 function ensureAuthenticated(req, res, next){
@@ -48,12 +49,26 @@ router.get('/dashboard', ensureAuthenticated, function(req, res) {
 
 // Dashboard client
 router.get('/dashboardc', ensureAuthenticated, function(req, res){
-	res.render('dashboardc', {layout: 'layoutb.handlebars'});
+	if(req.user.user_level=="Lawyer")
+	{
+		res.redirect('/users/dashboardl');
+	}
+	else
+	{
+		res.render('dashboardc', {layout: 'layoutb.handlebars'});
+	}
 });
 
 // Dashboard lawyer
 router.get('/dashboardl', ensureAuthenticated, function(req, res){
-	res.render('dashboardl', {layout: 'layoutb.handlebars'});
+	if(req.user.user_level=="Client")
+	{
+		res.redirect('/users/dashboardc');
+	}
+	else
+	{
+		res.render('dashboardl', {layout: 'layoutb.handlebars'});
+	}
 });
 
 // // Register
@@ -64,7 +79,8 @@ router.get('/dashboardl', ensureAuthenticated, function(req, res){
 // Login
 router.get('/login', function(req, res){
 	console.log("sdfasf");
-	res.redirect('index');
+	res.redirect('/');
+	res.render('index');
 });
 
 //Register
@@ -80,6 +96,9 @@ router.post('/register', function(req, res){
 	var password = req.body.password;
 	var password2 = req.body.password2;
 	var user_level = req.body.user_level;
+	var location = req.body.location;
+	if(user_level == 'Lawyer')
+		var specialization = req.body.specialization;
 	console.log("%s %s %s",name, email, password);
 	// Validation
 	req.checkBody('name', 'name is required').notEmpty();
@@ -88,14 +107,15 @@ router.post('/register', function(req, res){
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 	req.checkBody('user_level', 'UserLevel is required').notEmpty();
+	req.checkBody('location', 'Location is required').notEmpty();
 
+	if(user_level == 'Lawyer')
+		req.checkBody('specialization', 'Specialization is required').notEmpty();
 	var errors = req.validationErrors();
 
 	if(errors){
-		req.flash('failure-msg', 'Registration Failed : Passwords were not matching');
-		res.render('index',{
-			errors:errors
-		});
+		req.flash('error','Registration Failed : Passwords were not matching');
+		res.redirect('/');
 		console.log(errors);
 	} else {
 		// //User already registered
@@ -103,34 +123,50 @@ router.post('/register', function(req, res){
 			if(err) throw err;
 
 			if(user){
-				 req.flash('failure-msg', 'The Email Id is already registered');
 				console.log("FAILURE");
+				req.flash('error_msg', 'The Email Id is already registered');
+				res.redirect('/');
+			}
+			else{
+				if (user_level == 'Client')
+					var newUser = new User.Client({
+						name: name,
+						email: email,
+						location: location,
+						password: password,
+						user_level: user_level
+					});
+				else if (user_level == 'Lawyer')
+					var newUser = new User.Lawyer({
+						name: name,
+						email: email,
+						location: location,
+						password: password,
+						user_level: user_level,
+						specialization: specialization
+					});
+
+				User.createUser(newUser, function(err, user){
+					if(err) throw err;
+					console.log(user);
+				});
+
+				req.flash('success_msg', 'You are registered and can now login');
 				res.redirect('/');
 			}
 		});
-		var newUser = new User({
-			name: name,
-			email: email,
-			password: password,
-			user_level: user_level
-		});
+		// All is well we can create the user according to user_level
 
-		User.createUser(newUser, function(err, user){
-			if(err) throw err;
-			console.log(user);
-		});
-
-		req.flash('success_msg', 'You are registered and can now login');
-		res.redirect('/');
 	}
 });
 
 passport.use(new LocalStrategy({
 	usernameField: 'email',
-	passwordField: 'password'
+	passwordField: 'password',
+	roleField: 'user_level'
   },
-  function(username, password, done) {
-   User.getUserByEmail(username, function(err, user){
+  function(email, password,user_level, done) {
+   User.getUserByEmailAndRole(email,user_level, function(err, user){
    	if(err) throw err;
    	if(!user){
    		return done(null, false, {message: 'Unknown User'});
@@ -198,14 +234,50 @@ router.get('/submit', ensureAuthenticated, function(req, res){
 
 router.post('/search', ensureAuthenticated, function(req, res){
 	var name = req.body.lname;
-	console.log(name);
-	User.getUserByUsername(name, function(err, result){
-		if(err)	throw err;
-		res.render('search', {
-			layout: 'layoutb.handlebars',
-			result : result
+	var search_type = req.body.search_type;
+	console.log(search_type);
+	if(search_type == "name"){
+		User.Lawyer.getLawyerByName(name, function(err, result){
+			if(err)	throw err;
+			Case.getCaseByEmail(req.user.email, function (err, mycase){
+				if(err) throw err;
+				console.log("The emaill is :" + req.user.email );
+				res.render('search', {
+					layout: 'layoutb.handlebars',
+					result: result,
+					mycase: mycase
+				});
+			});
 		});
-	});
+	}
+	else if (search_type == "specialization"){
+		User.Lawyer.getLawyerBySpecialization(name, function(err, result){
+			if(err)	throw err;
+			Case.getCaseByEmail(req.user.email, function (err, mycase){
+				if(err) throw err;
+				console.log("The emaill is :" + req.user.email );
+				res.render('search', {
+					layout: 'layoutb.handlebars',
+					result: result,
+					mycase: mycase
+				});
+			});
+		});
+	}
+	else if (search_type == "location"){
+		User.Lawyer.getLawyerByLocation(name, function(err, result){
+			if(err)	throw err;
+			Case.getCaseByEmail(req.user.email, function (err, mycase){
+				if(err) throw err;
+				console.log("The emaill is :" + req.user.email );
+				res.render('search', {
+					layout: 'layoutb.handlebars',
+					result: result,
+					mycase: mycase
+				});
+			});
+		});
+	}
 });
 
 router.get('/searchlawyer',ensureAuthenticated, function(req, res){
@@ -222,6 +294,10 @@ router.get('/criminalcase',ensureAuthenticated,function(req, res){
 
 router.get('/corporatecase',ensureAuthenticated,function(req, res){
 	res.render('corporatecase', {layout: 'layoutb.handlebars'});
+});
+
+router.get('/duicase',ensureAuthenticated,function(req, res){
+	res.render('dui', {layout: 'layoutb.handlebars'});
 });
 
 module.exports = router;

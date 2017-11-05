@@ -1,4 +1,4 @@
 applications:
-- name: lawonhands
+- name: lawonhand
   random-route: true
   memory: 512M
