@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
@@ -12,7 +12,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/mydb', {
+mongoose.connect("mongodb://rachit:rachit@ds159344.mlab.com:59344/project", {
 	  useMongoClient: true,
 });
 var db = mongoose.connection;
@@ -20,10 +20,16 @@ var db = mongoose.connection;
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var cases = require('./routes/cases');
-
+var questions = require('./routes/questions');
+const hbs = exphbs.create({
+	defaultLayout:'layout',
+	extname: '.hbs',
+	helpers: {
+	 if_equal: function(){}
+	}
+});
 // Init App
 var app = express();
-
 // View Engine
 // var cons = require('consolidate');
 // app.engine('html', cons.swig)
@@ -31,11 +37,9 @@ var app = express();
 // app.set('view engine', 'html');
 
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({
-	defaultLayout:'layout',
-	helpers: require('./public/handlebars/handlebars')
-}));
-app.set('view engine', 'handlebars');
+app.engine('.hbs',hbs.engine);
+app.set('view engine', '.hbs'); //with dot
+
 
 // BodyParser Middleware
 app.use(bodyParser.json());
@@ -91,6 +95,7 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/cases',cases);
+app.use('/questions',questions);
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));

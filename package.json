@@ -21,6 +21,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "handlebars-helper-equal": "^1.0.0",
     "mongodb": "*",
     "mongoose": "*",
     "nodemon": "^1.12.1",

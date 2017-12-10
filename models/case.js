@@ -117,8 +117,8 @@ module.exports.getCaseByEmail = function(user_email, callback) {
 };
 
 module.exports.getCaseByEmailAndName = function(name,client_email,callback){
-	var query = ({user_email: client_email,
-				case_name: name});
+	var query = {user_email: client_email,
+				case_name: name};
 	Case.find(query,callback);
 }
 
@@ -130,7 +130,18 @@ module.exports.updateCaseByLawyer = function(
 		user_email: client_email
 	};
 
-	Case.update(query,{case_lawyer: lawyer_email},callback);
+	Case.update(query,{$set:{case_lawyer: lawyer_email}},callback);
+}
+
+module.exports.ApproveCaseByLawyer = function(
+	casename,lawyer_email,callback)
+{
+	var query = {
+		case_name: casename,
+		case_lawyer: lawyer_email
+	};
+
+	Case.update(query,{$set:{case_request: true}},callback);
 }
 
 module.exports.getApprovedCasesByLawyer = function(lawyer_email,callback){
@@ -145,6 +156,22 @@ module.exports.getPendingCasesByLawyer = function(lawyer_email,callback){
 	var query = {
 		case_request: false,
 		case_lawyer : lawyer_email
+	};
+	Case.find(query,callback);
+}
+
+module.exports.getApprovedCasesByClient = function(client_email,callback){
+	var query = {
+		case_request: true,
+		user_email : client_email
+	};
+	Case.find(query,callback);
+}
+
+module.exports.getPendingCasesByClient = function(client_email,callback){
+	var query = {
+		case_request: false,
+		user_email : client_email
 	};
 	Case.find(query,callback);
 }

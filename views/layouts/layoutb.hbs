@@ -76,26 +76,26 @@
             <div class="avatar"><img src="/images/2.png" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
               <h1 class="h4">{{user.name}}</h1>
-              <p>Location</p>
+			  <p>Location: {{user.location}}</p>
+			  <p>Type: {{user.user_level}}</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
           <ul class="list-unstyled">
             <li class="active"> <a href="/"><i class="icon-home"></i>Home</a></li>
-
-	j{{#ifeq a ""}} 
+  
               <li> <a href="/users/dashboardc"> <i class="fa fa-plus-square"></i>Add New Case </a></li>
               <li> <a href="/cases/searchcase"> <i class="fa fa-plus-square"></i>Search Cases</a></li>
-          
               <li> <a href="/cases/approvedcase"> <i class="fa fa-plus-square"></i>Approved Cases</a></li>
               <li> <a href="/cases/pendingcase"> <i class="fa fa-plus-square"></i>Pending Cases</a></li>
+              <li> <a href="/cases/appointment"> <i class="fa fa-calendar-o"></i> Request Appointment </a></li>
           
 
             <li> <a href="/users/searchlawyer"> <i class="fa fa-filter"></i> Search Lawyer </a></li>
-            <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-comments"></i>Forums </a>
+            <li><a href="dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-comments"></i>Forums </a>
               <ul id="dashvariants" class="collapse list-unstyled">
-                <li><a href="/users/dashboardc">Check Forum</a></li>
-                <li><a href="/users/dashboardc">Ask a Question</a></li>
+                <li><a href="/questions/check">Check Forum</a></li>
+                <li><a href="/users/ask">Ask a Question</a></li>
               </ul>
             </li>
             <li> <a href="/users/about"> <i class="icon-padnote"></i>About Us </a></li>

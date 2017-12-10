@@ -166,17 +166,22 @@ router.post('/dui_submit',function(req,res){
 router.post('/searchcase',ensureAuthenticated,function(req,res){
 	var casename = req.body.cname;
 	var email = req.user.email;
+	console.log(casename);
 	Case.getCaseByEmailAndName(casename,email,function(err,result){
 		if(err) throw err;
-		console.log("aa");console.log(casename);
-		res.render('searchedcase',{layout:'layoutb.handlebars',casename: casename,result: result});
+		console.log("aa");
+		res.render('searchedcase',{layout:'layoutb.hbs',casename: casename,result: result});
 	});
 
 });
 
 
 router.get('/searchcase',ensureAuthenticated,function(req,res){
-	res.render('searchcase', {layout: 'layoutb.handlebars'});
+	var email = req.user.email;
+	Case.getCaseByEmail(email,function(err,result){
+		if(err) throw err;
+		res.render('searchcase',{layout:'layoutb.hbs',cases: result});
+	});
 });
 
 
@@ -205,23 +210,64 @@ router.post('/submitlawyer',ensureAuthenticated,function(req,res){
 	});
 });
 
-router.get('/approvedcase',ensureAuthenticated,function(req,res){
+router.post('/pendingcase',ensureAuthenticated,function(req,res){
 	var lawyer_email = req.user.email;
-	
-	Case.getApprovedCasesByLawyer(lawyer_email,function(err,result){
+	var casename = req.body.casename;
+	console.log(casename);
+	Case.ApproveCaseByLawyer(casename,lawyer_email,function(err){
 		if(err) throw err;
-		console.log(result);
-		res.render('approved',{layout: 'layoutb.handlebars',result: result});
+		console.log("Approved",casename,lawyer_email);
+		res.redirect('/cases/pendingcase');
 	});
 });
 
-router.get('/pendingcase',ensureAuthenticated,function(req,res){
-	var lawyer_email = req.user.email;
-	
-	Case.getPendingCasesByLawyer(lawyer_email,function(err,result){
+router.get('/approvedcase',ensureAuthenticated,function(req,res){
+	var user_email = req.user.email;
+	var user_level = req.user.user_level;
+	if(user_level == "Lawyer"){
+	Case.getApprovedCasesByLawyer(user_email,function(err,result){
 		if(err) throw err;
 		console.log(result);
-		res.render('pending',{layout: 'layoutb.handlebars',result: result});
+		res.render('approved',{layout: 'layoutb.hbs',result: result});
+	});
+	}
+	else{
+	Case.getApprovedCasesByClient(user_email,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('approved',{layout: 'layoutb.hbs',result: result});
+	});
+	
+	}
+});
+
+router.get('/pendingcase',ensureAuthenticated,function(req,res){
+	var user_email = req.user.email;
+	var user_level = req.user.user_level;
+	if(user_level == "Lawyer"){
+	Case.getPendingCasesByLawyer(user_email,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('pending',{layout: 'layoutb.hbs',result: result});
+	});
+	}
+	else{
+	Case.getPendingCasesByClient(user_email,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('pending',{layout: 'layoutb.hbs',result: result});
+	});
+	
+	}
+});
+
+router.get('/appointment',ensureAuthenticated,function(req,res){
+	var client_email = req.user.email;
+	
+	Case.getCaseByEmail(client_email,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('appointment',{layout: 'layoutb.hbs',result: result});
 	});
 });
 

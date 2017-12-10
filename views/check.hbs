@@ -1,0 +1,129 @@
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h3 class="no-margin-bottom">Forum Check</h3>
+            </div>
+          </header>
+          
+          <body>
+
+
+
+<div class="container">
+
+<div class="col-sm-8">
+  <form class="navbar-form" role="search">
+    <div class="input-group add-on">
+      <input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </form>
+          
+</div>
+</div>
+
+{{#each result}}
+
+<div class="talk-bubble tri-right round border right-top">
+       <h3 style="text-align: center"> {{this.question}}
+      </h3>
+  <div class="container-fluid">
+    <div class="row">
+         <div class="avatar"><img src="/images/5.png" alt="..." class="img-fluid rounded-circle" width="50px" height="50px"></div>
+
+       <div class="col-sm-8 text-right talktext">   
+       
+        <p style="text-align: justify; margin-left:10px;">{{this.question_des}}</p>
+        </div>
+        <div class="col-sm-2">
+			<a href="/questions/answer?question={{this.question}}&email={{this.client_email}}" style="float:right; " class="btn btn-primary" >Answer </a>
+    </div>          
+    </div>
+        <div class="row">
+                    <div class="col-sm-2">{{this.client_email}} </div>
+                    <div class="col-sm-3"></div>
+					<div class="col-sm-5"> <u><a href="/users/viewanswer?question={{this.question}}&email={{this.client_email}}" target="_blank">View Answers </a></u></div>
+                    <div class="col-sm-2"> 
+                          &ensp;
+                         <a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a>&ensp;&ensp;
+                         <a href="#"><i class="fa fa-thumbs-down" aria-hidden="true"></i></a>
+                    </div>      
+                </div>
+  </div>
+</div>
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div role="document" class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="exampleModalLabel" class="modal-title"> Legal Advice</h4>
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+            </div>
+            <form action="/questions/check" method="post">
+            <div class="modal-body">
+              <p></p>
+                <label><h5>Enter Your Answer Here</h5></label> 
+							<input readonly={{this.client_email}}  name = "client_email" value = "{{this.client_email}}">
+							<input readonly={{this.question}} name = "quesiton" value = "{{this.question}}">
+                            <textarea class="form-control" style="width:100%" rows="8" name="answer"></textarea>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+              <input type="submit" value="Submit"class="btn btn-primary">
+            </div>
+            </form>
+          </div>
+       </div>
+</div>
+
+<div id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div role="document" class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="exampleModalLabel" class="modal-title"> Answer Replied</h4>
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+            </div>
+            
+          </div>
+       </div>
+</div>
+
+{{/each}}
+
+
+
+
+<br><br><br>
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-sm-7 text-right">
+<div class="pagination" >
+  <a href="#">&laquo;</a>
+  <a href="#"  class="active">1</a>
+  <a href="#" >2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+</div>
+</div>
+</div>
+</div>

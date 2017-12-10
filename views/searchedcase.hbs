@@ -1,10 +1,11 @@
 {{#if result}}
 
-
+<div style="margin:50px;">
 <form action="/cases/submitlawyer" method="post" id = "searchform">
 					<input type="text" name="lawyers_email" placeholder="Enter Lawyer's Email" required="" />
 					<button type="submit" value = "{{casename}}" name = "casename" class="btn btn-info">Submit </button>
 				</form>
+</div>				
 
 {{else}}
 <strong>Sorry!! No such case registered</strong>

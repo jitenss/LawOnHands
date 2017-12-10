@@ -1,0 +1,22 @@
+
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h3 class="no-margin-bottom">Answer Question</h3>
+            </div>
+          </header>
+          <body>
+          
+          <!-- Forms Section-->
+			  <div class="login-form">
+				<form action="/questions/answer" method="post">
+					<input class="h4" style="width:100%" name = "client_email"readonly="" value="{{client_email}}">
+					<input class="h4" style="width:100%" name = "question"    readonly="" value="{{question}}">
+					<label><h5>Answer Description</h5></label> 
+					<textarea class="form-control" rows="5" name="answerDesc" style = "width:100%" ></textarea>
+				<br><br>
+					<input type="submit" value="Post">
+				</form>
+			</div>
+ 	</div>              

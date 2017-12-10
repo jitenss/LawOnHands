@@ -5,6 +5,7 @@ var LocalStrategy = require('passport-local-roles').Strategy;
 
 var User = require('../models/user');
 var Case = require('../models/case');
+var Question = require('../models/question');
 var value;
 
 function ensureAuthenticated(req, res, next){
@@ -55,7 +56,7 @@ router.get('/dashboardc', ensureAuthenticated, function(req, res){
 	}
 	else
 	{
-		res.render('dashboardc', {layout: 'layoutb.handlebars'});
+		res.render('dashboardc', {layout: 'layoutb.hbs'});
 	}
 });
 
@@ -67,7 +68,7 @@ router.get('/dashboardl', ensureAuthenticated, function(req, res){
 	}
 	else
 	{
-		res.render('dashboardl', {layout: 'layoutb.handlebars'});
+		res.render('dashboardl', {layout: 'layoutb.hbs'});
 	}
 });
 
@@ -243,7 +244,7 @@ router.post('/search', ensureAuthenticated, function(req, res){
 				if(err) throw err;
 				console.log("The emaill is :" + req.user.email );
 				res.render('search', {
-					layout: 'layoutb.handlebars',
+					layout: 'layoutb.hbs',
 					result: result,
 					mycase: mycase
 				});
@@ -257,7 +258,7 @@ router.post('/search', ensureAuthenticated, function(req, res){
 				if(err) throw err;
 				console.log("The emaill is :" + req.user.email );
 				res.render('search', {
-					layout: 'layoutb.handlebars',
+					layout: 'layoutb.hbs',
 					result: result,
 					mycase: mycase
 				});
@@ -271,7 +272,7 @@ router.post('/search', ensureAuthenticated, function(req, res){
 				if(err) throw err;
 				console.log("The emaill is :" + req.user.email );
 				res.render('search', {
-					layout: 'layoutb.handlebars',
+					layout: 'layoutb.hbs',
 					result: result,
 					mycase: mycase
 				});
@@ -281,23 +282,41 @@ router.post('/search', ensureAuthenticated, function(req, res){
 });
 
 router.get('/searchlawyer',ensureAuthenticated, function(req, res){
-	res.render('searchlawyer', {layout: 'layoutb.handlebars'});
+	res.render('searchlawyer', {layout: 'layoutb.hbs'});
+});
+
+router.get('/ask',ensureAuthenticated, function(req, res){
+	res.render('ask', {layout: 'layoutb.hbs'});
 });
 
 router.get('/divorcecase',ensureAuthenticated,function(req, res){
-	res.render('divorcecase', {layout: 'layoutb.handlebars'});
+	res.render('divorcecase', {layout: 'layoutb.hbs'});
 });
 
 router.get('/criminalcase',ensureAuthenticated,function(req, res){
-	res.render('criminal', {layout: 'layoutb.handlebars'});
+	res.render('criminal', {layout: 'layoutb.hbs'});
 });
 
 router.get('/corporatecase',ensureAuthenticated,function(req, res){
-	res.render('corporatecase', {layout: 'layoutb.handlebars'});
+	res.render('corporatecase', {layout: 'layoutb.hbs'});
 });
 
 router.get('/duicase',ensureAuthenticated,function(req, res){
-	res.render('dui', {layout: 'layoutb.handlebars'});
+	res.render('dui', {layout: 'layoutb.hbs'});
+});
+
+router.get('/viewanswer',ensureAuthenticated,function(req, res){
+	var question = req.query.question;
+	var client_email = req.query.email;
+	console.log(question,client_email);
+	Question.getQuestionByClientEmail(question,client_email,function(err,result){
+		if(err) throw err;
+		var answers;
+		if(result){
+			answers = result.answers;
+		}
+		res.render('answer', {layout: 'layoutb.hbs', answers: answers, question: question});
+	});
 });
 
 module.exports = router;
