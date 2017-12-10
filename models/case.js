@@ -30,10 +30,17 @@ var CaseSchema = mongoose.Schema({
 	case_comments: {
 		type: String
 	},
+	case_lawyer: {
+		type: String
+	},
+	case_request: {
+		type: String,
+		default: false				// False means pending case
+	}
 },	{discriminatorKey : 'case_type' }
 );
 
-var jitencase = mongoose.model('case',CaseSchema);
+var Case = mongoose.model('case',CaseSchema);
 
 //Divorse Schema
 var DivorseSchema =  new mongoose.Schema(
@@ -59,13 +66,112 @@ var CriminalSchema = new mongoose.Schema(
 	{ discriminatorKey : 'case_type' }
 );
 
+//Corporate Schema
+var CorporateSchema = new mongoose.Schema(
+	{
+	company_name: String,
+	type: String,
+	year_of_conflict: String,
+	reason: String,
+	assets: String,
+	bilateral_conflict: String,
+	},
+	{ discriminatorKey : 'case_type' }
+);
+
+//DUI Schema
+var DuiSchema = new mongoose.Schema(
+	{
+	driver_name: String,
+	gender: String,
+	incident_date: String,
+	time: String,
+	address: String,
+	plate_no: String,
+	reporting_officer: String,
+	damage: String,
+	witness: String,
+	},
+	{ discriminatorKey : 'case_type' }
+);
+
+
 module.exports = {
-		divorseCase:	jitencase.discriminator('divorse', DivorseSchema),
-		criminalCase:	jitencase.discriminator('criminal', CriminalSchema)
-}
+		divorseCase:	Case.discriminator('divorse', DivorseSchema),
+		criminalCase:	Case.discriminator('criminal', CriminalSchema),
+		corporateCase:	Case.discriminator('corporate', CorporateSchema),
+		duiCase:		Case.discriminator('dui', DuiSchema),
+};
 //var criminalCase = module.exports = mongoose.model('cCase', CriminalSchema);
 
 module.exports.createCase = function(newCase, callback){
 	newCase.save(callback);
 	console.log(newCase);
 };
+
+module.exports.getCaseByEmail = function(user_email, callback) {
+	query = {
+		user_email: user_email		
+	};
+	Case.find(query,callback);
+};
+
+module.exports.getCaseByEmailAndName = function(name,client_email,callback){
+	var query = {user_email: client_email,
+				case_name: name};
+	Case.find(query,callback);
+}
+
+module.exports.updateCaseByLawyer = function(
+	casename,client_email,lawyer_email,callback)
+{
+	var query = {
+		case_name: casename,
+		user_email: client_email
+	};
+
+	Case.update(query,{$set:{case_lawyer: lawyer_email}},callback);
+}
+
+module.exports.ApproveCaseByLawyer = function(
+	casename,lawyer_email,callback)
+{
+	var query = {
+		case_name: casename,
+		case_lawyer: lawyer_email
+	};
+
+	Case.update(query,{$set:{case_request: true}},callback);
+}
+
+module.exports.getApprovedCasesByLawyer = function(lawyer_email,callback){
+	var query = {
+		case_request: true,
+		case_lawyer : lawyer_email
+	};
+	Case.find(query,callback);
+}
+
+module.exports.getPendingCasesByLawyer = function(lawyer_email,callback){
+	var query = {
+		case_request: false,
+		case_lawyer : lawyer_email
+	};
+	Case.find(query,callback);
+}
+
+module.exports.getApprovedCasesByClient = function(client_email,callback){
+	var query = {
+		case_request: true,
+		user_email : client_email
+	};
+	Case.find(query,callback);
+}
+
+module.exports.getPendingCasesByClient = function(client_email,callback){
+	var query = {
+		case_request: false,
+		user_email : client_email
+	};
+	Case.find(query,callback);
+}
